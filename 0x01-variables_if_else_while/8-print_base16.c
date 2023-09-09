@@ -5,17 +5,14 @@
  */
 int main(void)
 {
-char digit = '0';
-while (digit <= '9')
+char digit;
+for (digit = '0'; digit <= '9'; digit++)
 {
 putchar(digit);
-digit++;
 }
-char lowercaseLetter = 'a';
-while (lowercaseLetter <= 'f')
+for (digit = 'a'; digit <= 'f'; digit++)
 {
-putchar(lowercaseLetter);
-lowercaseLetter++;
+putchar(digit);
 }
 putchar('\n');
 return (0);
