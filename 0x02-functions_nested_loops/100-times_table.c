@@ -17,19 +17,18 @@ for (j = 0; j <= n; j++)
 result = i * j;
 if (j != 0)
 {
+printf(", ");
 if (result < 10)
-printf("   %d", result);
-else if (result < 100)
 printf("  %d", result);
-else
+else if (result < 100)
 printf(" %d", result);
+else
+printf("%d", result);
 }
 else
 {
 printf("%d", result);
 }
-if (j != n)
-printf(", ");
 }
 printf("\n");
 }
