@@ -1,33 +1,44 @@
 #include "main.h"
 
-int is_prime_recursive(int n, int i);
-
 /**
- * is_prime_number - Checks if a number is prime.
- * @n: The number to check.
+ * is_palindrome - check if a string is a palindrome
+ * @s: the string to check
  *
- * Return: 1 if n is prime, 0 otherwise.
+ * Return: 1 if s is a palindrome, 0 otherwise
  */
-int is_prime_number(int n)
+int is_palindrome(char *s)
 {
-return (is_prime_recursive(n, 2));
+int length = _strlen(s);
+return (check_palindrome(s, 0, length - 1));
 }
 
 /**
- * is_prime_recursive -  to check if a number is prime.
- * @n: The number to check.
- * @i: The current divisor being tested.
+ * _strlen - calculate the length of a string
+ * @s: the string
  *
- * Return: 1 if n is prime, 0 otherwise.
+ * Return: the length of s
  */
-int is_prime_recursive(int n, int i)
+int _strlen(char *s)
 {
-if (n <= 1)
+if (*s == '\0')
 return (0);
-if (i * i > n)
+return (1 + _strlen(s + 1));
+}
+
+/**
+ * check_palindrome - recursively check if a string is a palindrome
+ * @s: the string to check
+ * @start: the starting index
+ * @end: the ending index
+ *
+ * Return: 1 if s is a palindrome, 0 otherwise
+ */
+int check_palindrome(char *s, int start, int end)
+{
+if (start >= end)
 return (1);
-if (n % i == 0)
+if (s[start] != s[end])
 return (0);
-return (is_prime_recursive(n, i + 1));
+return (check_palindrome(s, start + 1, end - 1));
 }
 
