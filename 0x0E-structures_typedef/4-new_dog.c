@@ -1,38 +1,91 @@
-#include "dog.h"
 #include <stdlib.h>
+#include "dog.h"
+
+int _strlen(char *s);
+char *_strcpy(char *dest, char *src);
+
 /**
- * new_dog - creates a new struct of type dog
- * @name: struct parameter name
- * @age: struct parameter age
- * @owner: struct parameter owner
- * Return: returns pointer to buffer of datatype dog
- */
+  * new_dog - ...
+  * @name: ...
+  * @age: ...
+  * @owner: ...
+  *
+  * Return: ...
+  */
 dog_t *new_dog(char *name, float age, char *owner)
 {
-int nlen, olen, i;
-dog_t *doggy;
+	dog_t *max_dog;
+	int name_l = 0, own_l = 0;
 
-nlen = olen = 0;
-while (name[nlen++])
-;
-while (owner[olen++])
-;
-doggy = malloc(sizeof(dog_t));
-if (doggy == NULL)
-return (NULL);
+	if (name != NULL && owner != NULL)
+	{
+		name_l = _strlen(name) + 1;
+		own_l = _strlen(owner) + 1;
+		max_dog = malloc(sizeof(dog_t));
 
-doggy->name = malloc(nlen *sizeof(doggy->name));
-if (doggy == NULL)
-return (NULL);
-for (i = 0; i < nlen; i++)
-doggy->name[i] = name[i];
+		if (max_dog == NULL)
+			return (NULL);
 
-doggy->age = age;
+		max_dog->name = malloc(sizeof(char) * name_l);
 
-doggy->owner = malloc(olen *sizeof(doggy->owner));
-if (doggy == NULL)
-return (NULL);
-for (i = 0; i < olen; i++)
-doggy->owner[i] = owner[i];
-return (doggy);
+		if (max_dog->name == NULL)
+		{
+			free(max_dog);
+			return (NULL);
+		}
+
+		max_dog->owner = malloc(sizeof(char) * own_l);
+
+		if (max_dog->owner == NULL)
+		{
+			free(max_dog->name);
+			free(max_dog);
+			return (NULL);
+		}
+
+		max_dog->name = _strcpy(max_dog->name, name);
+		max_dog->owner = _strcpy(max_dog->owner, owner);
+		max_dog->age = age;
+	}
+
+	return (max_dog);
+}
+
+/**
+  * _strlen - Returns the length of a string
+  * @s: String to count
+  *
+  * Return: String length
+  */
+int _strlen(char *s)
+{
+	int c = 0;
+
+	for (; *s != '\0'; s++)
+	{
+		c++;
+	}
+
+	return (c);
+}
+
+/**
+  * _strcpy - Copy a string
+  * @dest: Destination value
+  * @src: Source value
+  *
+  * Return: the pointer to dest
+  */
+char *_strcpy(char *dest, char *src)
+{
+	int i;
+
+	for (i = 0; src[i] != '\0'; i++)
+	{
+		dest[i] = src[i];
+	}
+
+	dest[i++] = '\0';
+
+	return (dest);
 }
