@@ -9,15 +9,15 @@
  */
 listint_t *get_nodeint_at_index(listint_t *head, unsigned int index)
 {
+listint_t *current = head;
 unsigned int i = 0;
-while (head != NULL)
+while (current != NULL)
 {
 if (i == index)
-return head;
-head = head->next;
+return (current);
+current = current->next;
 i++;
 }
-/*Node at the specified index does not exist*/
 return (NULL);
 }
 
