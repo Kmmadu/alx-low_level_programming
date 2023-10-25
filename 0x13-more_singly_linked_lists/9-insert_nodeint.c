@@ -12,35 +12,31 @@
  */
 listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 {
-listint_t *new_node, *temp;
+listint_t *new, *temp, *current;
 unsigned int i = 0;
 if (head == NULL)
 return (NULL);
 if (idx == 0)
 {
-/* If idx is 0, add a new node at the beginning */
-new_node = add_nodeint(head, n);
-return (new_node);
+new = add_nodeint(head, n);
+return (new);
 }
 temp = *head;
 while (temp != NULL)
 {
 if (i == idx - 1)
 {
-/* Create a new node and assign the value n */
-new_node = malloc(sizeof(listint_t));
-if (new_node == NULL)
+new = malloc(sizeof(listint_t));
+if (new == NULL)
 return (NULL);
-new_node->n = n;
-/* Adjust the next pointers to insert the new node */
-new_node->next = temp->next;
-temp->next = new_node;
-return (new_node);
+new->n = n;
+new->next = temp->next;
+temp->next = new;
+return (new);
 }
 temp = temp->next;
 i++;
 }
-/* If idx is out of range, return NULL */
 return (NULL);
 }
 
